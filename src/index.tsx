@@ -10,7 +10,6 @@ const images: MovieImage[] = [
   { file_path: "/rjBwhsOzHKUw2NIOrE7aMqjfe6s.jpg"},
 ];
 
-const movies = [sample, sample, sample, sample, sample, sample, sample];
 
 // eslint-disable-next-line react-refresh/only-export-components
 const App = () => {
