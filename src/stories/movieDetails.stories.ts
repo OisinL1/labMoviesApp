@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import MovieDetails from "../components/movieDetails";
-import SampleMovie from "./sampleData";
+import MovieDetails from "../components/movieDetails/index";
+import sample from "./sampleData";
+import type { Meta, StoryObj } from "@storybook/react";
 
-const meta = {
-  title: "Movie Details Page/MovieDetails",
+const meta: Meta<typeof MovieDetails> = {
+  title: "Movie Details Page",
   component: MovieDetails,
-} satisfies Meta<typeof MovieDetails>;
+};
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof MovieDetails>;
+
 export const Basic: Story = {
-  args:  SampleMovie
+  args: { ...sample },
 };
-Basic.storyName = "Default";
