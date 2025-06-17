@@ -13,6 +13,9 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import img from '../../images/film-poster-placeholder.png';
 import { BaseMovieProps } from "../../types/interfaces";
+import { Link } from "react-router-dom";
+
+
 
 const styles = {
   card: { maxWidth: 345 },
