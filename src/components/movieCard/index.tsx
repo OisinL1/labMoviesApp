@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useContext } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -12,11 +12,10 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
-import img from '../../images/film-poster-placeholder.png';
+import img from "../../images/film-poster-placeholder.png";
 import { BaseMovieProps } from "../../types/interfaces";
 import { Link } from "react-router-dom";
-
-
+import { MoviesContext } from "../../contexts/moviesContext"; 
 
 const styles = {
   card: { maxWidth: 345 },
@@ -26,22 +25,25 @@ const styles = {
   },
 };
 
-interface MovieCardProps  {
-  movie: BaseMovieProps;
-  selectFavourite: (movieId: number) => void;
+interface MovieCardProps {
+  movie: BaseMovieProps; 
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({movie, selectFavourite}) => {
+const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const { favourites, addToFavourites } = useContext(MoviesContext); 
+
+  const isFavourite = favourites.find((id) => id === movie.id) ? true : false; 
+
   const handleAddToFavourite = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    selectFavourite(movie.id);
+    addToFavourites(movie); 
   };
 
   return (
     <Card sx={styles.card}>
       <CardHeader
         avatar={
-          movie.favourite ? (
+          isFavourite ? ( 
             <Avatar sx={styles.avatar}>
               <FavoriteIcon />
             </Avatar>
@@ -72,7 +74,8 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, selectFavourite}) => {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
-              {"  " }{movie.vote_average}{" "}
+              {"  "}
+              {movie.vote_average}{" "}
             </Typography>
           </Grid>
         </Grid>
@@ -89,6 +92,6 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, selectFavourite}) => {
       </CardActions>
     </Card>
   );
-}
+};
 
 export default MovieCard;

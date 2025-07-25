@@ -50,7 +50,9 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
 
   const handleChange = (e: SelectChangeEvent, type: FilterOption, value: string) => {
     e.preventDefault()
-      onUserInput(type, value)
+      if (onUserInput) {
+        onUserInput(type, value);
+      }
   };
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
