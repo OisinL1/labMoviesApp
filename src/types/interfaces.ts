@@ -40,6 +40,14 @@ export interface BaseMovieProps {
   action: (m: BaseMovieProps) => React.ReactNode;
 }  
 
+export interface Review {
+    author: string,
+    content: string,
+    agree: boolean,
+    rating: number,
+    movieId: number,
+  }
+
   export interface MovieImage {
   file_path: string;
   aspect_ratio?: number; 
