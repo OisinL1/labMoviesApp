@@ -35,10 +35,10 @@ export interface BaseMovieProps {
     }[];
   }
 
-   export interface BaseMovieListProps { 
-    movies: BaseMovieProps[];
-    selectFavourite: (movieId: number) => void;
-  }   
+   export interface BaseMovieListProps {
+  movies: BaseMovieProps[];
+  action: (m: BaseMovieProps) => React.ReactNode;
+}  
 
   export interface MovieImage {
   file_path: string;
