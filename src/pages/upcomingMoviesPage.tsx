@@ -5,6 +5,7 @@ import { getUpcomingMovies } from "../api/tmdb-api";
 import { DiscoverMovies } from "../types/interfaces";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import MovieFilterUI, { titleFilter, genreFilter } from "../components/movieFilterUI";
 
 const titleFiltering = { name: "title", value: "", condition: titleFilter };
@@ -33,7 +34,7 @@ const UpcomingMoviesPage: React.FC = () => {
       <PageTemplate
         title="Upcoming Movies"
         movies={displayedMovies}
-        action={() => null}
+        action={() => <PlaylistAddIcon color="primary" />}
       />
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
