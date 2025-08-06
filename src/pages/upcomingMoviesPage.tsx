@@ -7,13 +7,17 @@ import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import MovieFilterUI, { titleFilter, genreFilter } from "../components/movieFilterUI";
+import { useContext } from "react"
+import { MoviesContext } from "../contexts/moviesContext";
 
 const titleFiltering = { name: "title", value: "", condition: titleFilter };
 const genreFiltering = { name: "genre", value: "0", condition: genreFilter };
 
 const UpcomingMoviesPage: React.FC = () => {
+  // Using react-query for caching upcoming movies
   const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("upcoming", getUpcomingMovies);
   const { filterValues, setFilterValues, filterFunction } = useFiltering([titleFiltering, genreFiltering]);
+  const { addToMustWatch } = useContext(MoviesContext);
 
   if (isLoading) return <Spinner />;
   if (isError) return <h1>{error.message}</h1>;
@@ -34,7 +38,13 @@ const UpcomingMoviesPage: React.FC = () => {
       <PageTemplate
         title="Upcoming Movies"
         movies={displayedMovies}
-        action={() => <PlaylistAddIcon color="primary" />}
+        action={(movie) => (
+  <PlaylistAddIcon
+    color="primary"
+    style={{ cursor: "pointer" }}
+    onClick={() => addToMustWatch(movie.id)}
+  />
+)}
       />
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
