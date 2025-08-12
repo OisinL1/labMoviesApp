@@ -1,3 +1,37 @@
+// --- ACTORS ---
+export interface BaseActorProps {
+  id: number;
+  name: string;
+  profile_path?: string;
+  popularity?: number;
+  known_for_department?: string;
+}
+
+export interface ActorDetailsProps extends BaseActorProps {
+  biography?: string;
+  birthday?: string;
+  place_of_birth?: string;
+  also_known_as?: string[];
+  deathday?: string;
+  gender?: number;
+  homepage?: string;
+}
+
+export interface BaseActorListProps {
+  actors: BaseActorProps[];
+  action: (a: BaseActorProps) => React.ReactNode;
+}
+
+export interface TemplateActorListPageProps extends BaseActorListProps {
+  title: string;
+}
+
+export interface DiscoverActors {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: BaseActorProps[];
+}
 export interface BaseMovieProps {
     title: string;
     budget: number;
