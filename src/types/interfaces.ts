@@ -1,4 +1,3 @@
-// --- ACTORS ---
 export interface BaseActorProps {
   id: number;
   name: string;
@@ -113,6 +112,64 @@ export interface DiscoverMovies {
   total_pages: number;
   total_results: number;
   results: BaseMovieProps[];
+}
+
+export interface BaseTvProps {
+  id: number;
+  name: string; 
+  original_name?: string;
+  overview: string;
+  first_air_date?: string;
+  vote_average: number;
+  popularity: number;
+  poster_path?: string;
+  tagline?: string;
+  number_of_seasons?: number;
+  number_of_episodes?: number;
+  favourite?: boolean;
+  genre_ids?: number[];
+}
+
+export interface TvDetailsProps extends BaseTvProps {
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  production_countries?: {
+    iso_3166_1: string;
+    name: string;
+  }[];
+}
+
+export interface BaseTvListProps {
+  tvSeries: BaseTvProps[];
+  action: (t: BaseTvProps) => React.ReactNode;
+}
+
+export interface TvListPageTemplateProps extends BaseTvListProps {
+  title: string;
+}
+
+export interface TvImage {
+  file_path: string;
+  aspect_ratio?: number;
+  height?: number;
+  iso_639_1?: string;
+  vote_average?: number;
+  vote_count?: number;
+  width?: number;
+}
+
+export interface TvPageProps {
+  tv: TvDetailsProps;
+  images: TvImage[];
+}
+
+export interface DiscoverTvSeries {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: BaseTvProps[];
 }
 
 export type FilterOption = "title" | "genre";

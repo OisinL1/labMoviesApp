@@ -3,7 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { BaseActorProps } from "../../types/interfaces";
 
-const AddToActorFavouritesIcon: React.FC<BaseActorProps> = (actor) => {
+const AddToActorFavouritesIcon: React.FC<BaseActorProps> = () => {
   // Placeholder for future context logic
   const onUserSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
