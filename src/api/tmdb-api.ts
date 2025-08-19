@@ -75,8 +75,19 @@ export const getUpcomingMovies = () => {
     throw error
  });
 };
-
-
+export const getTvDetails = (id: string) => {
+  return fetch(
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Failed to get TV data. Response status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error;
+  });
+};
   
   export const getGenres = () => {
   return fetch(
@@ -113,5 +124,19 @@ export const getUpcomingMovies = () => {
   }).then((json) => json.posters)
     .catch((error) => {
       throw error
+    });
+};
+
+export const getTvImages = (id: string | number) => {
+  return fetch(
+    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error("failed to fetch TV images");
+    }
+    return response.json();
+  }).then((json) => json.posters)
+    .catch((error) => {
+      throw error;
     });
 };

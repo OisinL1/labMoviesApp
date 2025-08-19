@@ -14,33 +14,31 @@ interface ActorCardProps {
 }
 
 const styles = {
-  card: { maxWidth: 200, },
-  media: { height: 300 },
+  card: { maxWidth: 345 },
+  media: { height: 500 },
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
 };
 
-
-
 const ActorCard: React.FC<ActorCardProps> = ({ actor, action }) => {
   return (
     <Card sx={styles.card}>
       <CardContent>
-        <Typography variant="h6" align="center">
+        <Typography variant="h5" align="center">
           {actor.name}
         </Typography>
       </CardContent>
       <CardMedia
         component="img"
         sx={styles.media}
-        image={actor.profile_path ? `https://image.tmdb.org/t/p/w300${actor.profile_path}` : img}
+        image={actor.profile_path ? `https://image.tmdb.org/t/p/w500${actor.profile_path}` : img}
         alt={actor.name}
       />
-      <CardContent sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+      <CardContent>
         {action && action(actor)}
-        <Link to={`/actors/${actor.id}`} style={{ textDecoration: 'none', marginLeft: 8 }}>
-          <Button variant="outlined" size="small" color="primary">
+        <Link to={`/actors/${actor.id}`} style={{ textDecoration: 'none' }}>
+          <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
         </Link>
