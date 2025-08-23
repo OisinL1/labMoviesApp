@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import CardHeader from "@mui/material/CardHeader";
+import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { BaseActorProps } from "../../types/interfaces";
 import img from "../../images/film-poster-placeholder.png";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { ActorsContext } from "../../contexts/actorsContext";
 
 interface ActorCardProps {
   actor: BaseActorProps;
@@ -22,13 +26,25 @@ const styles = {
 };
 
 const ActorCard: React.FC<ActorCardProps> = ({ actor, action }) => {
+  const { favourites } = useContext(ActorsContext);
+  const isFavourite = favourites.includes(actor.id);
+
   return (
     <Card sx={styles.card}>
-      <CardContent>
-        <Typography variant="h5" align="center">
-          {actor.name}
-        </Typography>
-      </CardContent>
+      <CardHeader
+        avatar={
+          isFavourite ? (
+            <Avatar sx={styles.avatar}>
+              <FavoriteIcon />
+            </Avatar>
+          ) : null
+        }
+        title={
+          <Typography variant="h5" component="p">
+            {actor.name}
+          </Typography>
+        }
+      />
       <CardMedia
         component="img"
         sx={styles.media}
